@@ -31,15 +31,30 @@ DELETE {{URL}}/eliminar_usuario/1
 
 ### --- PRUEBAS DE ASISTENCIA ---
 
-###
+
 # Registrar una nueva asistencia (asumiendo que existe el usuario con id_usuario=1)
+###
 POST {{URL}}/nueva_asistencia
 Content-Type: application/json
+
 {
-    "id_usuario": 1,
-    "fecha": "2026-06-24",
-    "estado": "Presente"
+    "fecha": "2026-06-24 07:55:00",
+    "estado": "Presente",
+    "id_preceptor": 1,
+    "id_alumno": 1
 }
+
+#Preceptor :D
+POST {{URL}}/preceptor
+Content-Type: application/json
+
+{
+    "id_usuario": "bubu",
+    "email": "bubu.gere@sagradoalcal.edu.ar",
+    "contraseña": 12345,
+
+    }
+
 
 ###
 # Obtener el historial de asistencias de todos los usuarios

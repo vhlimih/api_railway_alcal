@@ -130,15 +130,17 @@ def actualizar_usuario(id):
 @cross_origin()
 def insertar_asistencia():
     # Recibe el ID del usuario, la fecha (YYYY-MM-DD) y el estado (Presente/Ausente/Tarde)
-    id_usuario = request.json["id_usuario"]
+    
     fecha = request.json["fecha"]
     estado = request.json["estado"]
+    id_preceptor = request.json["id_preceptor"]
+    id_alumno = request.json["id_alumno"]
 
     cursor = mysql.connection.cursor()
     
     # Query SQL para insertar los datos en la tabla Asistencias
-    sql = "INSERT INTO Asistencias(id_usuario, fecha, estado) VALUES (%s, %s, %s);"
-    cursor.execute(sql, (id_usuario, fecha, estado))
+    sql = "INSERT INTO Asistencia(fecha, estado, preceptor_idpreceptor, Alumno_idAlumno) VALUES (%s, %s, %s, %s);"
+    cursor.execute(sql, (fecha, estado, id_preceptor, id_alumno))
     
     mysql.connection.commit()
     cursor.close()
@@ -153,9 +155,8 @@ def listar_asistencias():
     # Usamos INNER JOIN para enlazar la tabla Asistencias con la tabla Usuarios
     # De este modo, podemos mostrar el nombre y apellido real de quien asistió
     sql = """
-        SELECT a.idAsistencias, a.id_usuario, u.nombre, u.apellido, a.fecha, a.estado 
-        FROM Asistencias a
-        INNER JOIN Usuarios u ON a.id_usuario = u.idUsuarios
+        SELECT a.idasistencia, a.fecha, a.estado, preceptor_idpreceptor, Alumno_idAlumno
+        FROM Asistencia a
     """
 
     cursor = mysql.connection.cursor()
@@ -170,19 +171,39 @@ def listar_asistencias():
         for i in resultado:
             # Transformamos el objeto de fecha (date) proveniente de MySQL en texto string (YYYY-MM-DD)
             # para evitar que Flask falle al procesar el formato JSON.
-            fecha_str = i[4].strftime('%Y-%m-%d') if hasattr(i[4], 'strftime') else str(i[4])
+            fecha_str = i[1].strftime('%Y-%m-%d') if hasattr(i[1], 'strftime') else str(i[1])
             
             p = {
                 "id_asistencia": i[0],
-                "id_usuario": i[1],
-                "nombre": i[2],
-                "apellido": i[3],
                 "fecha": fecha_str,
-                "estado": i[5]
+                "estado": i[2],
+                "id_preceptor": i[3],
+                "id_alumno":i[4]
             }
             asistencias.append(p)
             
         return jsonify(asistencias)
+
+#######Preceptor
+@app.route("/preceptor", methods=["POST"])
+@cross_origin()
+def insertar_preceptor():
+    
+    
+    id_usuario = request.json["id_usuario"]
+    email = request.json["email"]
+    contraseña = request.json["contraseña"]
+
+    cursor = mysql.connection.cursor()
+    
+    # Query SQL para insertar los datos en la tabla Asistencias
+    sql = "INSERT INTO Asistencia(id_usuario, email, contraseña) VALUES (%s, %s, %s,);"
+    cursor.execute(sql, (id_usuario, email, contraseña))
+    
+    mysql.connection.commit()
+    cursor.close()
+
+    return jsonify({"resultado": "Preceptor registrado/a correctamente"})
 
 
 
