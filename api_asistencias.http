@@ -1,0 +1,46 @@
+@URL = https://web-production-66e36.up.railway.app
+
+###
+# Obtener todos los usuarios
+GET {{URL}}/traer_usuarios
+
+###
+# Crear usuario
+POST {{URL}}/nuevo_usuario
+Content-Type: application/json
+
+{
+    "nombre": "Pablo",
+    "apellido": "Navas",
+    "provincia": "Misiones"
+}
+
+###
+# Actualizar usuario con id=1
+PUT {{URL}}/actualizar_usuario/1
+Content-Type: application/json
+
+{
+    "nom": "Juan Actualizado"
+}
+
+###
+# Eliminar usuario con id=1
+DELETE {{URL}}/eliminar_usuario/1
+
+
+### --- PRUEBAS DE ASISTENCIA ---
+
+###
+# Registrar una nueva asistencia (asumiendo que existe el usuario con id_usuario=1)
+POST {{URL}}/nueva_asistencia/1
+Content-Type: application/json
+{
+    "id_usuario": 1,
+    "fecha": "2026-06-24",
+    "estado": "Presente"
+}
+
+###
+# Obtener el historial de asistencias de todos los usuarios
+GET {{URL}}/traer_asistencias

@@ -1,4 +1,4 @@
-@URL = https://web-production-0f156.up.railway.app
+@URL = https://web-production-66e36.up.railway.app
 
 ###
 # Obtener todos los usuarios
@@ -10,9 +10,9 @@ POST {{URL}}/nuevo_usuario
 Content-Type: application/json
 
 {
-    "nombre": "Juan",
-    "apellido": "Perez",
-    "provincia": "Buenos Aires"
+    "nombre": "Pablo",
+    "apellido": "Navas",
+    "provincia": "Misiones"
 }
 
 
