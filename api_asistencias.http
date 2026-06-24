@@ -33,7 +33,7 @@ DELETE {{URL}}/eliminar_usuario/1
 
 ###
 # Registrar una nueva asistencia (asumiendo que existe el usuario con id_usuario=1)
-POST {{URL}}/nueva_asistencia/1
+POST {{URL}}/nueva_asistencia
 Content-Type: application/json
 {
     "id_usuario": 1,
