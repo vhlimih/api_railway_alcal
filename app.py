@@ -207,7 +207,26 @@ def insertar_preceptor():
 
 
 
+#######alumno
+@app.route("/alumno", methods=["POST"])
+@cross_origin()
+def insertar_preceptor():
+    
+    
+    nombre = request.json["nombre"]
+    apellido = request.json["apellido"]
+    Cursos_idCursos = request.json["Cursos_idCursos"]
 
+    cursor = mysql.connection.cursor()
+    
+    # Query SQL para insertar los datos en la tabla Asistencias
+    sql = "INSERT INTO Preceptor(nombre, apellido, Cursos_idCursos) VALUES (%s, %s, %s);"
+    cursor.execute(sql, (nombre, apellido, Cursos_idCursos))
+    
+    mysql.connection.commit()
+    cursor.close()
+
+    return jsonify({"resultado": "Alumno registrado/a correctamente"})
 
 
 

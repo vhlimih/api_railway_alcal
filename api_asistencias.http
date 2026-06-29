@@ -56,6 +56,18 @@ Content-Type: application/json
 
     }
 
+###
+#Alumno :D
+POST {{URL}}/alumno
+Content-Type: application/json
+
+{
+    "nombre": "Belen",
+    "apellido": "Diaz",
+    "Cursos_idCursos": 7B
+
+    }
+
 
 ###
 # Obtener el historial de asistencias de todos los usuarios
