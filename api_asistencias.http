@@ -64,8 +64,19 @@ Content-Type: application/json
 {
     "nombre": "Belen",
     "apellido": "Diaz",
-    "Cursos_idCursos": "7B"
+    "Cursos_idCursos": 1
 
+    }
+
+###
+#curso :D
+POST {{URL}}/curso
+Content-Type: application/json
+
+{
+    "nombre_curso": "7B",
+    "modalidad_idmodalidad": "Tecnica",
+    
     }
 
 

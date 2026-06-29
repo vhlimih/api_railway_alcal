@@ -229,7 +229,26 @@ def insertar_alumno():
     return jsonify({"resultado": "Alumno registrado/a correctamente"})
 
 
+#Cursos
+#######alumno
+@app.route("/curso", methods=["POST"])
+@cross_origin()
+def aniadir_curso():
+    
+    
+    nombre_curso = request.json["nombre_curso"]
+    modalidad_idmodalidad = request.json["modalidad_idmodalidad"]
 
+    cursor = mysql.connection.cursor()
+    
+    # Query SQL para insertar los datos en la tabla Asistencias
+    sql = "INSERT INTO Cursos(nombre_curso, modalidad_idmodalidad) VALUES (%s, %s);"
+    cursor.execute(sql, (nombre_curso, modalidad_idmodalidad))
+    
+    mysql.connection.commit()
+    cursor.close()
+
+    return jsonify({"resultado": "Curso añadido"})
 
 
 
