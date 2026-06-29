@@ -210,7 +210,7 @@ def insertar_preceptor():
 #######alumno
 @app.route("/alumno", methods=["POST"])
 @cross_origin()
-def insertar_preceptor():
+def insertar_alumno():
     
     
     nombre = request.json["nombre"]
@@ -220,7 +220,7 @@ def insertar_preceptor():
     cursor = mysql.connection.cursor()
     
     # Query SQL para insertar los datos en la tabla Asistencias
-    sql = "INSERT INTO alumno(nombre, apellido, Cursos_idCursos) VALUES (%s, %s, %s);"
+    sql = "INSERT INTO Alumno(nombre, apellido, Cursos_idCursos) VALUES (%s, %s, %s);"
     cursor.execute(sql, (nombre, apellido, Cursos_idCursos))
     
     mysql.connection.commit()
