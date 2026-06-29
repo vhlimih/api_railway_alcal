@@ -190,15 +190,15 @@ def listar_asistencias():
 def insertar_preceptor():
     
     
-    id_usuario = request.json["id_usuario"]
+    nombre_usuario = request.json["nombre_usuario"]
     email = request.json["email"]
     contraseña = request.json["contraseña"]
 
     cursor = mysql.connection.cursor()
     
     # Query SQL para insertar los datos en la tabla Asistencias
-    sql = "INSERT INTO Preceptor(id_usuario, email, contraseña) VALUES (%s, %s, %s);"
-    cursor.execute(sql, (id_usuario, email, contraseña))
+    sql = "INSERT INTO Preceptor(nombre_usuario, email, contraseña) VALUES (%s, %s, %s);"
+    cursor.execute(sql, (nombre_usuario, email, contraseña))
     
     mysql.connection.commit()
     cursor.close()

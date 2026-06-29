@@ -50,7 +50,7 @@ POST {{URL}}/preceptor
 Content-Type: application/json
 
 {
-    "id_usuario": "bubu",
+    "nombre_usuario": "bubu",
     "email": "bubu.gere@sagradoalcal.edu.ar",
     "contraseña": 12345
 
