@@ -220,7 +220,7 @@ def insertar_preceptor():
     cursor = mysql.connection.cursor()
     
     # Query SQL para insertar los datos en la tabla Asistencias
-    sql = "INSERT INTO Preceptor(nombre, apellido, Cursos_idCursos) VALUES (%s, %s, %s);"
+    sql = "INSERT INTO alumno(nombre, apellido, Cursos_idCursos) VALUES (%s, %s, %s);"
     cursor.execute(sql, (nombre, apellido, Cursos_idCursos))
     
     mysql.connection.commit()
